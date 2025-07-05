@@ -1,15 +1,27 @@
 'use client'
 
+import BrandSection from "@/components/HomeSections/BrandSection";
 import HeroSection from "@/components/HomeSections/HeroSection";
-import Image from "next/image";
+import RegisterTrademark from "@/components/HomeSections/RegisterTrademark";
+import BenifitsSection from '@/components/HomeSections/BenifitsSection'
+import AboutSection from "@/components/HomeSections/AboutSection";
+import Testimonial from "@/components/HomeSections/Testimonial";
+import PricingSection from "@/components/HomeSections/PricingSection";
 
 export default function Home() {
   return (
-    
+
     <>
 
-       <HeroSection />
+      <HeroSection />
+      <RegisterTrademark />
+      <BenifitsSection />
+      <PricingSection />
+      <BrandSection />
+      <AboutSection />
+      <Testimonial />
       
+
     </>
   );
 }
