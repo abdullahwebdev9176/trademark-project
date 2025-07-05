@@ -13,7 +13,7 @@ const Header = () => {
   const navLinks = [
     { name: 'Home', href: '#' },
     { name: 'Company', href: '#', dropdown: true },
-    { name: 'Marketplace', href: '/login' },
+    { name: 'Registration', href: '/trademark-registration' },
     { name: 'About', href: '/about' },
     { name: 'Team', href: '#' },
     { name: 'Contact', href: '/contact' },
