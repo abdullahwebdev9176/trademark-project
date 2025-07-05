@@ -48,54 +48,54 @@ export default function TrademarkStudy() {
             <div className="flex flex-wrap gap-3">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="radio" name="trademarkType" value="Word-Only" checked={trademarkType === 'Word-Only'} onChange={() => setTrademarkType('Word-Only')} className="accent-blue-600" />
-                Word-Only
+                <span className="text-black">Word-Only</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="radio" name="trademarkType" value="Design-Only" checked={trademarkType === 'Design-Only'} onChange={() => setTrademarkType('Design-Only')} className="accent-blue-600" />
-                Design-Only / Stylized
+                <span className="text-black">Design-Only / Stylized</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="radio" name="trademarkType" value="Combined" checked={trademarkType === 'Combined'} onChange={() => setTrademarkType('Combined')} className="accent-blue-600" />
-                Combined Word & Design
+                <span className="text-black">Combined Word & Design</span>
               </label>
             </div>
           </div>
           {/* Trademark Name */}
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Trademark Name <span className="text-red-500">*</span></label>
-            <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="Trademark to Study" required />
+            <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 text-black placeholder-gray-400" placeholder="Trademark to Study" required />
           </div>
           {/* Description of Goods/Services */}
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Description of Goods/Services <span className="text-red-500">*</span></label>
-            <textarea className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" rows={3} placeholder="Describe the goods/services for this trademark" required></textarea>
+            <textarea className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 text-black placeholder-gray-400" rows={3} placeholder="Describe the goods/services for this trademark" required></textarea>
           </div>
           {/* Admin Contact */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-gray-700 font-semibold mb-1">Admin Full Name <span className="text-red-500">*</span></label>
-              <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="Admin Name" required />
+              <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 text-black placeholder-gray-400" placeholder="Admin Name" required />
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-1">Admin Email <span className="text-red-500">*</span></label>
-              <input type="email" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="admin@email.com" required />
+              <input type="email" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 text-black placeholder-gray-400" placeholder="admin@email.com" required />
             </div>
           </div>
           {/* Owner Contact */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-gray-700 font-semibold mb-1">Owner Full Name <span className="text-red-500">*</span></label>
-              <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="Owner Name" required />
+              <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 text-black placeholder-gray-400" placeholder="Owner Name" required />
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-1">Owner Email <span className="text-red-500">*</span></label>
-              <input type="email" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="owner@email.com" required />
+              <input type="email" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 text-black placeholder-gray-400" placeholder="owner@email.com" required />
             </div>
           </div>
           {/* Additional Notes */}
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Additional Notes (optional)</label>
-            <textarea className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300" rows={2} placeholder="Any specific requirements or questions"></textarea>
+            <textarea className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 text-black placeholder-gray-400" rows={2} placeholder="Any specific requirements or questions"></textarea>
           </div>
           <button type="submit" className="w-full bg-gradient-to-r from-[#FC466B] to-[#3F5EFB] text-white font-bold rounded-lg px-6 py-3 shadow hover:from-[#3F5EFB] hover:to-[#FC466B] transition-colors duration-200 mt-4 text-lg">
             Submit Request

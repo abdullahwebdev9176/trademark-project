@@ -349,41 +349,66 @@ const countryKeys = [
 
 
 const TrademarkRegistration = () => {
+    // --- MODAL LOGIC CLEANUP ---
+    // Only one showModal state at root, controls both modal types
+    const [showModal, setShowModal] = useState(null); // null | 'study' | 'registration'
     const [selectedCountry, setSelectedCountry] = useState('UnitedStates');
     const country = countryData[selectedCountry];
 
-    const [showModal, setShowModal] = useState(false);
+    // Modal content for both flows
+    const renderModalContent = () => {
+        if (showModal === 'study') {
+            return (
+                <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+                    <h2 className="text-2xl font-bold text-blue-700 mb-2">Order Trademark Study</h2>
+                    <p className="mb-4 text-gray-700">A trademark study helps you assess the registrability and risks before filing. Our experts will review your brand and provide a detailed report for <b>{country.name}</b>.</p>
+                    <button
+                        className="w-full bg-gradient-to-r from-[#FC466B] to-[#3F5EFB] text-white font-bold rounded-lg px-6 py-3 shadow hover:from-[#3F5EFB] hover:to-[#FC466B] transition-colors duration-200 mt-2 text-lg"
+                        onClick={() => {
+                            setShowModal(null);
+                            window.location.href = '/trademark-study';
+                        }}
+                    >
+                        Proceed to Study Form
+                    </button>
+                </div>
+            );
+        }
+        if (showModal === 'registration') {
+            return (
+                <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+                    <h2 className="text-2xl font-bold text-blue-700 mb-2">Order Trademark Registration</h2>
+                    <p className="mb-4 text-gray-700">Ready to register your trademark in <b>{country.name}</b>? Proceed to the registration form to submit your details and start the process.</p>
+                    <button
+                        className="w-full bg-gradient-to-r from-[#FC466B] to-[#3F5EFB] text-white font-bold rounded-lg px-6 py-3 shadow hover:from-[#3F5EFB] hover:to-[#FC466B] transition-colors duration-200 mt-2 text-lg"
+                        onClick={() => {
+                            setShowModal(null);
+                            window.location.href = '/trademark-registration-form';
+                        }}
+                    >
+                        Proceed to Registration Form
+                    </button>
+                </div>
+            );
+        }
+        return null;
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-8 px-2 flex flex-col items-center relative">
-            {/* Modal for Trademark Study */}
-            {/* Modal for Trademark Study (always overlay, never hide page) */}
-            <div className={showModal ? "block" : "hidden"}>
-                <div className="fixed inset-0 z-50 flex items-center justify-center">
-                    <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 relative">
-                        <div className="flex items-center justify-between border-b pb-3 mb-4">
-                            <h5 className="text-xl font-bold text-blue-700">Trademark Study</h5>
-                            <button
-                                type="button"
-                                className="text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none"
-                                aria-label="Close"
-                                onClick={() => setShowModal(false)}
-                            >
-                                &times;
-                            </button>
-                        </div>
-                        <div className="modal-body text-gray-700 space-y-4">
-                            <p>Before filing your trademark in <b>{country.name}</b> it is important that you evaluate possible obstacles that may arise during registration process.</p>
-                            <p>Our Trademark Comprehensive Study will not only list similar trademarks (graphic/phonetic) that may conflict with yours, but also give you an Attorney's opinion about registration possibilities.</p>
-                            <p><b>This report is optional but highly recommended.</b></p>
-                            <div className="flex justify-end">
-                                <Link href="/trademark-study" onClick={() => setShowModal(false)}>
-                                    <button className="bg-gradient-to-r from-[#FC466B] to-[#3F5EFB] text-white font-bold rounded-lg px-6 py-2 shadow hover:from-[#3F5EFB] hover:to-[#FC466B] transition-colors duration-200">Proceed</button>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+            {/* Modal Overlay (root-level, only one instance) */}
+            {showModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+                    {renderModalContent()}
+                    <button
+                        className="absolute top-4 right-4 text-3xl text-white hover:text-blue-200 focus:outline-none"
+                        onClick={() => setShowModal(null)}
+                        aria-label="Close Modal"
+                    >
+                        &times;
+                    </button>
                 </div>
-            </div>
+            )}
             {/* Select Country Heading */}
             <h2 className="text-2xl sm:text-3xl font-bold text-blue-700 mb-2 text-center">Select Country</h2>
             {/* Flag and Select Box */}
@@ -423,45 +448,17 @@ const TrademarkRegistration = () => {
                         {step.button === 'Order Study' ? (
                             <button
                                 className="w-full py-3 px-4 bg-gradient-to-r from-[#FC466B] to-[#3F5EFB] text-white font-bold rounded-lg shadow-lg hover:from-[#3F5EFB] hover:to-[#FC466B] transition-colors duration-200 text-lg mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
-                                onClick={() => setShowModal(true)}
+                                onClick={() => setShowModal('study')}
                             >
                                 {step.button}
                             </button>
                         ) : (
-                            <button className="w-full py-3 px-4 bg-gradient-to-r from-[#FC466B] to-[#3F5EFB] text-white font-bold rounded-lg shadow-lg hover:from-[#3F5EFB] hover:to-[#FC466B] transition-colors duration-200 text-lg mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
+                            <button
+                                className="w-full py-3 px-4 bg-gradient-to-r from-[#3F5EFB] to-[#FC466B] text-white font-bold rounded-lg shadow-lg hover:from-[#FC466B] hover:to-[#3F5EFB] transition-colors duration-200 text-lg mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                                onClick={() => setShowModal('registration')}
+                            >
                                 {step.button}
                             </button>
-                        )}
-  // Modal state
-                        const [showModal, setShowModal] = useState(false);
-                        {/* Modal for Order Study */}
-                        {showModal && (
-                            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-                                <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 animate-fadein">
-                                    <div className="flex items-center justify-between border-b px-6 py-4">
-                                        <h5 className="text-xl font-bold text-blue-700">Trademark Study</h5>
-                                        <button
-                                            className="text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none"
-                                            aria-label="Close"
-                                            onClick={() => setShowModal(false)}
-                                        >
-                                            &times;
-                                        </button>
-                                    </div>
-                                    <div className="px-6 py-5">
-                                        <p className="mb-3 text-gray-700">Before filing your trademark in {country.name} it is important that you evaluate possible obstacles that may arise during registration process.</p>
-                                        <p className="mb-3 text-gray-700">Our Trademark Comprehensive Study will not only list similar trademarks (graphic/phonetic) that may conflict with yours, but also give you an Attorney's opinion about registration possibilities.</p>
-                                        <p className="mb-5 text-gray-800 font-semibold"><b>This report is optional but highly recommended.</b></p>
-
-                                        <div className='flex justify-end'>
-                                            <Link href="/trademark-study" className="inline-block" onClick={() => setShowModal(false)}>
-                                                <button className="bg-gradient-to-r from-[#FC466B] to-[#3F5EFB] text-white font-bold rounded-full px-6 py-2 shadow hover:from-[#3F5EFB] hover:to-[#FC466B] transition-colors duration-200">Proceed</button>
-                                            </Link>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
                         )}
                     </div>
                 ))}
