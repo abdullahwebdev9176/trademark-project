@@ -14,6 +14,7 @@ const Header = () => {
     { name: 'Home', href: '#' },
     { name: 'Company', href: '#', dropdown: true },
     { name: 'Registration', href: '/trademark-registration' },
+    { name: 'Trademark', href: '/trademark-listing' },
     { name: 'About', href: '/about' },
     { name: 'Team', href: '#' },
     { name: 'Contact', href: '/contact' },
